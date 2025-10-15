@@ -57,7 +57,7 @@ app.post("/users", (req, res) => {
 // 🔵 READ - GET
 app.get("/users", (req, res) => {
   res.send("Fetching all users...");
-});
+}); 
 
 // 🟡 UPDATE - PUT
 app.put("/users/:id", (req, res) => {
