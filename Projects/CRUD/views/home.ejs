@@ -1,0 +1,183 @@
+<%- include('partials/header.ejs') %>
+
+<!-- content -->
+<main class="py-5" style="background-color: #121212; color: #e0e0e0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card bg-dark text-light">
+          <div class="card-header card-title bg-secondary text-light">
+            <div class="d-flex align-items-center">
+              <h2 class="mb-0">All Contacts</h2>
+              <div class="ml-auto">
+                <a href="/add-data" class="btn btn-success">
+                  <i class="fa fa-plus-circle"></i> Add New
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <table
+              class="table table-striped table-hover table-dark text-light"
+            >
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>Alfred</td>
+                  <td>Kuhlman</td>
+                  <td>alfred@test.com</td>
+                  <td>98989898</td>
+                  <td width="150">
+                    <a
+                      href="/show-data"
+                      class="btn btn-sm btn-circle btn-outline-info"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </a>
+                    <a
+                      href="/update-data"
+                      class="btn btn-sm btn-circle btn-outline-secondary"
+                    >
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-circle btn-outline-danger"
+                      onclick="confirm('Are you sure?')"
+                    >
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Frederick</td>
+                  <td>Jerde</td>
+                  <td>frederick@test.com</td>
+                  <td>54545454</td>
+                  <td>
+                    <a
+                      href="/show-data"
+                      class="btn btn-sm btn-circle btn-outline-info"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </a>
+                    <a
+                      href="/update-data"
+                      class="btn btn-sm btn-circle btn-outline-secondary"
+                    >
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-circle btn-outline-danger"
+                      onclick="confirm('Are you sure?')"
+                    >
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Frederick</td>
+                  <td>Jerde</td>
+                  <td>frederick@test.com</td>
+                  <td>54545454</td>
+                  <td>
+                    <a
+                      href="/show-data"
+                      class="btn btn-sm btn-circle btn-outline-info"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </a>
+                    <a
+                      href="/update-data"
+                      class="btn btn-sm btn-circle btn-outline-secondary"
+                    >
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-circle btn-outline-danger"
+                      onclick="confirm('Are you sure?')"
+                    >
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Frederick</td>
+                  <td>Jerde</td>
+                  <td>frederick@test.com</td>
+                  <td>54545454</td>
+                  <td>
+                    <a
+                      href="/show-data"
+                      class="btn btn-sm btn-circle btn-outline-info"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </a>
+                    <a
+                      href="/update-data"
+                      class="btn btn-sm btn-circle btn-outline-secondary"
+                    >
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-circle btn-outline-danger"
+                      onclick="confirm('Are you sure?')"
+                    >
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>Frederick</td>
+                  <td>Jerde</td>
+                  <td>frederick@test.com</td>
+                  <td>54545454</td>
+                  <td>
+                    <a
+                      href="/show-data"
+                      class="btn btn-sm btn-circle btn-outline-info"
+                    >
+                      <i class="fa fa-eye"></i>
+                    </a>
+                    <a
+                      href="/update-data"
+                      class="btn btn-sm btn-circle btn-outline-secondary"
+                    >
+                      <i class="fa fa-edit"></i>
+                    </a>
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-circle btn-outline-danger"
+                      onclick="confirm('Are you sure?')"
+                    >
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
