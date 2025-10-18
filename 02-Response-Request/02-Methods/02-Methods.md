@@ -14,3 +14,16 @@
 | **`res.headersSent`**  | A **property (not function)** that returns `true` if headers have already been sent.        | `if (res.headersSent) console.log("Headers already sent")` | Helps check if you can still modify response.               |
 | **`res.set()`**        | Sets one or more HTTP headers in the response.                                              | `res.set('Content-Type', 'text/html')`                     | Used to control HTTP headers.                               |
 | **`res.get()`**        | Returns the value of a response header.                                                     | `res.get('Content-Type')`                                  | Reads header information previously set.                    |
+
+
+
+
+| **Status Code** | **Name**              | **Meaning / Description**                                                                     | **Type**        |
+| --------------- | --------------------- | --------------------------------------------------------------------------------------------- | --------------- |
+| **200**         | OK                    | Request was successful. The server returned the expected response.                            | ✅ Success       |
+| **201**         | Created               | The request was successful, and a new resource was created. Commonly used with POST requests. | ✅ Success       |
+| **403**         | Forbidden             | The client is not allowed to access the requested resource (even if authenticated).           | 🚫 Client Error |
+| **404**         | Not Found             | The requested resource could not be found on the server.                                      | 🚫 Client Error |
+| **500**         | Internal Server Error | A general error occurred on the server side (bug, crash, etc.).                               | ❌ Server Error  |
+| **503**         | Service Unavailable   | The server is temporarily unable to handle the request (maintenance or overload).             | ❌ Server Error  |
+| **504**         | Gateway Timeout       | The server (acting as a gateway) did not receive a timely response from another server.       | ❌ Server Error  |

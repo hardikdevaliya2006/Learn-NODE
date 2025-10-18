@@ -54,28 +54,38 @@ app.get("/sendJsonp", (request, response) => {
 });
 
 app.get("/redirect", (request, response) => {
-  response.redirect(301, 'https://google.com');
+  response.redirect(301, "https://google.com");
 });
 
 app.get("/redirectBack", (request, response) => {
-  response.redirect('..');
+  response.redirect("..");
 });
 
 app.set("view engine", "ejs");
 
 app.get("/render", (request, response) => {
-  response.render('render');
+  response.render("render");
 });
 
 app.get("/download", (request, response) => {
-  response.download('./data/RESUME.pdf', 'Hardik Devaliya.pdf');
+  response.download("./data/RESUME.pdf", "Hardik Devaliya.pdf");
 });
 
 app.get("/prewiewFile", (request, response) => {
-  response.sendFile(__dirname + '/data/RESUME.pdf');
+  response.sendFile(__dirname + "/data/RESUME.pdf");
 });
 
 app.get("/end", (request, response) => {
-  response.write("Success!")
-  response.end()
+  response.write("Success!");
+  response.end();
+});
+
+app.get("/error", (request, response) => {
+  response.status(500).send("Error");
+});
+
+app.get("/check", (request, response) => {
+  response.set('custom-header', 'dfrte4te57tdfer85edfd24g')
+  console.log(response.get('custom-header'))
+  response.send("Haeder set")
 });
