@@ -31,9 +31,10 @@
                 </tr>
               </thead>
               <tbody>
-                <% dataList.forEach((data, index) => { %>
+                <% let index = counter %>
+                <% dataList.forEach((data) => { %>
                 <tr>
-                  <td><%= index +1 %></td>
+                  <td><%= index++ %></td>
                   <td><%= data.firstName %></td>
                   <td><%= data.lastName %></td>
                   <td><%= data.email %></td>
@@ -64,6 +65,34 @@
               </tbody>
             </table>
           </div>
+          <nav class="bg-dark py-3">
+            <ul class="pagination justify-content-center mb-0">
+              <li class="page-item <%= hasPrevPage ? "" : "disabled" %>">
+                <a class="page-link <%= hasPrevPage ? "text-light bg-dark" : "text-secondary bg-dark" %> border-secondary"
+                  href="/?page=<%= prevPage %>">
+                  Previous
+                </a>
+              </li>
+                  <% for (let i = 1; i <= totalPages; i++) { 
+                      let activeClass = (page === i) 
+                      ? "bg-secondary text-light border-secondary" 
+                      : "bg-dark text-light border-secondary"; 
+                  %>
+              <li class="page-item">
+                <a class="page-link <%= activeClass %>" href="/?page=<%= i %>">
+                  <%= i %>
+                </a>
+              </li>
+                <% } %>
+
+              <li class="page-item <%= hasNextPage ? "" : "disabled" %>">
+                <a class="page-link <%= hasNextPage ? "text-light bg-dark" : "text-secondary bg-dark" %> border-secondary"
+                  href="/?page=<%= nextPage %>">
+                  Next
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>

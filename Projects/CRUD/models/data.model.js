@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import mongoosePaginate from "mongoose-paginate-v2"
 
 const dataSchema = mongoose.Schema({
   firstName: {
@@ -17,6 +18,8 @@ const dataSchema = mongoose.Schema({
     type: String,
   },
 });
+
+dataSchema.plugin(mongoosePaginate)
 
 const Data = mongoose.model("data", dataSchema, "data");
 

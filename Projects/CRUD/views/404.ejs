@@ -1,0 +1,30 @@
+<%- include('partials/header.ejs') %>
+
+<!-- content -->
+<main class="py-5" style="background-color: #121212; color: #e0e0e0">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card bg-dark text-light">
+          <div class="card-header card-title bg-secondary text-light">
+            <div class="d-flex align-items-center">
+              <h2 class="mb-0">404 - Error</h2>
+              <div class="ml-auto">
+                
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <% if(message){ %>
+            <h1><%= message %></h1>
+            <% } else { %>
+            <h1>Page not found</h1>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer.ejs') %>
