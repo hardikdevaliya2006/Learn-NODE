@@ -31,27 +31,28 @@
                 </tr>
               </thead>
               <tbody>
+                <% dataList.forEach((data, index) => { %>
                 <tr>
-                  <td>1</td>
-                  <td>Alfred</td>
-                  <td>Kuhlman</td>
-                  <td>alfred@test.com</td>
-                  <td>98989898</td>
+                  <td><%= index +1 %></td>
+                  <td><%= data.firstName %></td>
+                  <td><%= data.lastName %></td>
+                  <td><%= data.email %></td>
+                  <td><%= data.phone %></td>
                   <td width="150">
                     <a
-                      href="/show-data"
+                      href="/show-data/<%=data._id%>"
                       class="btn btn-sm btn-circle btn-outline-info"
                     >
                       <i class="fa fa-eye"></i>
                     </a>
                     <a
-                      href="/update-data"
+                      href="/update-data/<%=data._id%>"
                       class="btn btn-sm btn-circle btn-outline-secondary"
                     >
                       <i class="fa fa-edit"></i>
                     </a>
                     <a
-                      href="#"
+                      href="/delete-data/<%=data._id%>"
                       class="btn btn-sm btn-circle btn-outline-danger"
                       onclick="confirm('Are you sure?')"
                     >
@@ -59,6 +60,7 @@
                     </a>
                   </td>
                 </tr>
+                <%}) %>
               </tbody>
             </table>
           </div>

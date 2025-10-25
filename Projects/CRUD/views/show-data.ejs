@@ -1,4 +1,5 @@
 <%- include('partials/header.ejs') %>
+
 <!-- content -->
 <main class="py-5" style="background-color: #121212; color: #e0e0e0">
   <div class="container">
@@ -11,61 +12,91 @@
           <div class="card-body">
             <div class="row">
               <div class="col-md-12">
+                <!-- First Name -->
                 <div class="form-group row">
                   <label for="first_name" class="col-md-3 col-form-label"
                     >First Name</label
                   >
                   <div class="col-md-9">
-                    <p class="form-control-plaintext text-light">Alfred</p>
+                    <p
+                      class="form-control-plaintext bg-dark text-light border border-secondary rounded px-2 py-2"
+                    >
+                      <%= requestedData.firstName %>
+                    </p>
                   </div>
                 </div>
 
+                <!-- Last Name -->
                 <div class="form-group row">
                   <label for="last_name" class="col-md-3 col-form-label"
                     >Last Name</label
                   >
                   <div class="col-md-9">
-                    <p class="form-control-plaintext text-light">Kuhlman</p>
+                    <p
+                      class="form-control-plaintext bg-dark text-light border border-secondary rounded px-2 py-2"
+                    >
+                      <%= requestedData.lastName %>
+                    </p>
                   </div>
                 </div>
 
+                <!-- Email -->
                 <div class="form-group row">
                   <label for="email" class="col-md-3 col-form-label"
                     >Email</label
                   >
                   <div class="col-md-9">
-                    <p class="form-control-plaintext text-light">
-                      alfred@test.com
+                    <p
+                      class="form-control-plaintext bg-dark text-light border border-secondary rounded px-2 py-2"
+                    >
+                      <%= requestedData.email %>
                     </p>
                   </div>
                 </div>
 
+                <!-- Phone -->
                 <div class="form-group row">
                   <label for="phone" class="col-md-3 col-form-label"
                     >Phone</label
                   >
                   <div class="col-md-9">
-                    <p class="form-control-plaintext text-light">
-                      +6286767565656
+                    <p
+                      class="form-control-plaintext bg-dark text-light border border-secondary rounded px-2 py-2"
+                    >
+                      <%= requestedData.phone %>
                     </p>
                   </div>
                 </div>
 
+                <!-- Address -->
                 <div class="form-group row">
-                  <label for="name" class="col-md-3 col-form-label"
+                  <label for="address" class="col-md-3 col-form-label"
                     >Address</label
                   >
                   <div class="col-md-9">
-                    <p class="form-control-plaintext text-light">
-                      Lorem ipsum dolor
+                    <p
+                      class="form-control-plaintext bg-dark text-light border border-secondary rounded px-2 py-2"
+                    >
+                      <%= requestedData.address %>
                     </p>
                   </div>
                 </div>
+
                 <hr style="border-color: #444" />
+
+                <!-- Buttons -->
                 <div class="form-group row mb-0">
                   <div class="col-md-9 offset-md-3">
-                    <a href="/update-data" class="btn btn-info">Edit</a>
-                    <a href="#" class="btn btn-outline-danger">Delete</a>
+                    <a
+                      href="/update-data/<%= requestedData._id %>"
+                      class="btn btn-primary me-2"
+                      >Edit</a
+                    >
+                    <a
+                      href="/delete-data/<%= requestedData._id %>"
+                      class="btn btn-outline-danger me-2"
+                      >Delete</a
+                    >
                     <a href="/" class="btn btn-outline-secondary">Cancel</a>
                   </div>
                 </div>
