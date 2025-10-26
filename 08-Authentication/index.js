@@ -20,18 +20,36 @@ app.use(
   })
 );
 
+let isLogin = (req, res, next) => {
+  if (req.session.user) {
+    next();
+  } else {
+    res.redirect("login");
+  }
+};
+
 app.listen(3000, () => {
   console.log("Server running at http://localhost:3000");
 });
 
-app.get("/", (req, res) => {
+app.get("/", isLogin, (req, res) => {
   res.send(
-    `<h1>Wellcome To The Home Page</h1> <p>Hello, ${req.session.user} </p>`
+    `<h1>Wellcome To The Home Page</h1> <p>Hello, ${req.session.user} </p> <a href='/logout'>Logout</a>`
+  );
+});
+
+app.get("/profile", isLogin, (req, res) => {
+  res.send(
+    `<h1>Wellcome To Profile Page</h1> <p>Hello, ${req.session.user} </p> <a href='/logout'>Logout</a>`
   );
 });
 
 app.get("/login", (req, res) => {
-  res.render("login", { error: null });
+  if (req.session.user) {
+    res.redirect("/");
+  } else {
+    res.render("login", { error: null });
+  }
 });
 
 app.post("/login", async (req, res) => {
