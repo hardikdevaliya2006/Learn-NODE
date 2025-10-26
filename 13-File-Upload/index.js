@@ -51,13 +51,16 @@ app.get("/myform", (req, res) => {
   res.render("myform");
 });
 
-// app.post("/submitform", upload.array("file", 3), (req, res) => {
-//   if (!req.files || req.files.length === 0) {
-//     return res.status(400).send(`No File Uploaded`);
-//   }
-//   res.send(req.files);
-// });
+/* For Single File Upload
+app.post("/submitform", upload.array("file", 3), (req, res) => {
+  if (!req.files || req.files.length === 0) {
+    return res.status(400).send(`No File Uploaded`);
+  }
+  res.send(req.files);
+});
+*/
 
+/* For Multiple File Upload */
 app.post(
   "/submitform",
   upload.fields([
