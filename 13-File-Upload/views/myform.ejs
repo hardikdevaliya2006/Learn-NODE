@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Upload</title>
+  </head>
+  <body>
+    <h2>File Upload Form</h2>
+    <form action="/submitform" method="post" enctype="multipart/form-data">
+      <br />
+      <label for="userName">User Name : </label>
+      <input type="text" name="userName" id="userName" />
+      <br /><br />
+      <label for="file">Select File : </label>
+      <input type="file" name="file" id="file" />
+      <br /><br />  
+      <label for="userfile">User File : </label>
+      <input type="file" multiple="multiple" name="userfile" id="userfile" />
+      <br /><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
