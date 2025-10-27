@@ -1,6 +1,35 @@
 import express from "express";
 import Student from "../models/student.model.js";
+import multer from "multer";
+import path from "path";
+import fs from "fs";
 const router = express.Router();
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "./uploads");
+  },
+  filename: (req, file, cb) => {
+    const newFileName = Date.now() + path.extname(file.originalname);
+    cb(null, newFileName);
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith("image/")) {
+    cb(null, true);
+  } else {
+    cb(new Error("Only Images Are Allowed..."), false);
+  }
+};
+
+const upload = multer({
+  storage,
+  fileFilter: fileFilter,
+  limits: {
+    fieldSize: 1024 * 1024 * 3,
+  },
+});
 
 // Get All Students Data
 router.get("/", async (req, res) => {
@@ -26,9 +55,13 @@ router.get("/:id", async (req, res) => {
 });
 
 // Add New Student
-router.post("/", async (req, res) => {
+router.post("/", upload.single("profile_pic"), async (req, res) => {
   try {
-    const newStudent = await Student.create(req.body);
+    const student = new Student(req.body);
+    if (req.file) {
+      student.profile_pic = req.file.filename;
+    }
+    const newStudent = await student.save();
     res.status(201).json(newStudent);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -36,16 +69,39 @@ router.post("/", async (req, res) => {
 });
 
 // Update Student Data
-router.put("/:id", async (req, res) => {
+router.put("/:id", upload.single("profile_pic"), async (req, res) => {
   try {
+    const existingStudent = await Student.findById(req.params.id);
+    if (!existingStudent) {
+      if (req.file.filename) {
+        const filePath = path.join("./uploads", req.file.filename);
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.log("Failed To delete image : ", err);
+          }
+        });
+      }
+      return res.status(404).json({ message: "Student Not Found" });
+    }
+    if (req.file) {
+      if (existingStudent.profile_pic) {
+        const oldImagePath = path.join(
+          "./uploads",
+          existingStudent.profile_pic
+        );
+        fs.unlink(oldImagePath, (err) => {
+          if (err) {
+            console.log("Failed To delete old image : ", err);
+          }
+        });
+      }
+      req.body.profile_pic = req.file.filename;
+    }
     const updateStudent = await Student.findByIdAndUpdate(
       req.params.id,
       req.body
     );
-    if (!updateStudent) {
-      return res.status(404).json({ message: "Student Not Found" });
-    }
-    res.status(200).json({ message: "Recored Updated Successfully..." });
+    res.status(200).json(updateStudent);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -57,6 +113,14 @@ router.delete("/:id", async (req, res) => {
     const student = await Student.findByIdAndDelete(req.params.id);
     if (!student) {
       return res.status(404).json({ message: "Student Not Found" });
+    }
+    if (student.profile_pic) {
+      const filePath = path.join("./uploads", student.profile_pic);
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          console.log("Failed To delete", err);
+        }
+      });
     }
     res.json({ message: "Student Deleted Successfully..." });
   } catch (error) {
