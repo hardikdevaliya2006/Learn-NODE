@@ -4,12 +4,18 @@ import coonectDb from "./config/database.js";
 import { MulterError } from "multer";
 import cors from "cors";
 import path from "path";
+import { fileURLToPath } from "url";
 coonectDb();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use("./uploads", express.static(path.join(__dirname, "uploads")));
+app.use(
+  "/uploads",
+  express.static(
+    path.join(path.dirname(fileURLToPath(import.meta.url)), "uploads")
+  )
+);
 
 app.use(cors());
 app.use(express.json());
