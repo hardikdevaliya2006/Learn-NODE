@@ -1,6 +1,8 @@
 import express from "express";
 import studentRoutes from "./routes/student.routes.js";
+import userRoutes from "./routes/user.routes.js";
 import coonectDb from "./config/database.js";
+import auth from "./middlewares/auth.js";
 import { MulterError } from "multer";
 import cors from "cors";
 import path from "path";
@@ -19,8 +21,10 @@ app.use(
 
 app.use(cors());
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 
+app.use("/api/user", userRoutes);
+app.use(auth)
 app.use("/api/students", studentRoutes);
 
 app.use((error, req, res, next) => {
