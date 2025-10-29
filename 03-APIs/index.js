@@ -6,11 +6,19 @@ import auth from "./middlewares/auth.js";
 import { MulterError } from "multer";
 import cors from "cors";
 import path from "path";
+import helmet from "helmet";
+import rateLimit from "express-rate-limit";
 import { fileURLToPath } from "url";
 coonectDb();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+const limiter = rateLimit({
+  windowMs: 1000 * 60,
+  max: 5,
+  message: "Too many request",
+});
 
 app.use(
   "/uploads",
@@ -19,12 +27,15 @@ app.use(
   )
 );
 
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.use(cors());
+// app.use(helmet())
+// app.use(limiter);
+
 app.use("/api/user", userRoutes);
-app.use(auth)
+app.use(auth);
 app.use("/api/students", studentRoutes);
 
 app.use((error, req, res, next) => {
