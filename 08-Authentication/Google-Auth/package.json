@@ -1,5 +1,5 @@
 {
-  "name": "node-mail",
+  "name": "google-auth",
   "version": "1.0.0",
   "main": "index.js",
   "type": "module",
@@ -15,7 +15,9 @@
     "dotenv": "^17.2.3",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
-    "nodemailer": "^7.0.10",
-    "nodemon": "^3.1.10"
+    "express-session": "^1.18.2",
+    "nodemon": "^3.1.10",
+    "passport": "^0.7.0",
+    "passport-google-oauth20": "^2.0.0"
   }
 }

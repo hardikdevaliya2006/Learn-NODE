@@ -1,6 +1,8 @@
 import express, { text } from "express";
 import nodemailer from "nodemailer";
+import dotenv from "dotenv";
 import path from "path";
+dotenv.config();
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -11,7 +13,10 @@ const transpoter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 587,
   secure: false,
-  auth: { user: "hardikdevaliya2006@gmail.com", pass: "cgjhrknfcjazwbtm" },
+  auth: {
+    user: "hardikdevaliya2006@gmail.com",
+    pass: process.env.GOOGLE_APP_PASS,
+  },
 });
 
 app.listen(3000, () => {
